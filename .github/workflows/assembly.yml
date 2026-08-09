@@ -24,6 +24,11 @@ jobs:
   start:
     runs-on: ubuntu-latest
     steps:
+      - name: Print manual run info
+        if: github.event_name == 'workflow_dispatch'
+        run: |
+          echo "Manual run: deploying ${{ inputs.vehicle }} to ${{ inputs.environment }}"
+
       - name: Write summary header
         run: |
           echo "## Vehicle Assembly Pipeline" >> $GITHUB_STEP_SUMMARY
